@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "telegram-bots-platform"
+version = "1.0.0"
+description = "Three Telegram bots on a shared core: classic NLP, SQLite, aiogram 3"
+authors = [{ name = "Kirill Mikhelev", email = "mikhelevkirill@gmail.com" }]
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+dependencies = [
+    "aiogram>=3.13,<4",
+    "aiohttp-socks>=0.9",   # нужен aiogram, когда доступ к Telegram идёт через прокси
+    "python-dotenv>=1.0",
+    "APScheduler>=3.10,<4",
+    "dateparser>=1.2",
+    "feedparser>=6.0",
+    "httpx>=0.27",
+    "sumy>=0.11",
+    "scikit-learn>=1.5",
+    "numpy>=1.26",
+    "nltk>=3.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[tool.setuptools]
+packages = [
+    "botcore",
+]
+
+[tool.setuptools.package-dir]
+botcore = "packages/core/botcore"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = [".", "packages/core"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # bugbear
+]

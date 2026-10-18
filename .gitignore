@@ -1,0 +1,26 @@
+# secrets: tokens live only in .env, which is never committed
+.env
+.env.*
+!.env.example
+
+# data (SQLite is created on first run)
+data/
+*.db
+
+# python
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+
+# environments and caches
+venv/
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# IDE
+.idea/
+.vscode/
